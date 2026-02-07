@@ -1,0 +1,11 @@
+{
+  "title": "Thumbnail Brief Prompt Pack",
+  "price": 47,
+  "description": "The exact prompt system we use to generate professional thumbnail briefs for every video. Works with ChatGPT, Claude, and other AI tools.",
+  "category": "starter",
+  "icon": "fas fa-wand-magic-sparkles",
+  "gumroad_url": "",
+  "features": ["Complete prompt template", "Text overlay formulas", "AI image prompt guide", "6 template categories"],
+  "featured": true,
+  "order": 4
+}
