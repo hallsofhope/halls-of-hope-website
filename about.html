@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Halls of Hope - Our mission to share stories that move millions and remind the world of the goodness in humanity.">
+    <title>About | Halls of Hope</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <style>
+        :root {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #1A1A1A;
+            --bg-tertiary: #2D2D2D;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #707070;
+            --accent-gold: #D4A84B;
+            --accent-gold-hover: #E5B85C;
+            --accent-gold-subtle: rgba(212, 168, 75, 0.1);
+            --border-color: #2D2D2D;
+            --gradient-gold: linear-gradient(135deg, #D4A84B 0%, #B8943F 100%);
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
+        img { max-width: 100%; height: auto; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-img { width: 45px; height: 45px; object-fit: contain; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); }
+        .nav-cta {
+            background: var(--gradient-gold);
+            color: var(--bg-primary) !important;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center top, rgba(212, 168, 75, 0.1) 0%, transparent 60%);
+        }
+        .about-hero .container { position: relative; z-index: 1; }
+        .about-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+        .about-hero h1 span { color: var(--accent-gold); }
+        .about-hero .tagline {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+        }
+        .about-hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 100px 0;
+            background: var(--bg-primary);
+        }
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .mission-image {
+            position: relative;
+        }
+        .mission-image img {
+            border-radius: 16px;
+            width: 100%;
+        }
+        .mission-image-overlay {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 200px;
+            height: 200px;
+            border: 3px solid var(--accent-gold);
+            border-radius: 16px;
+            z-index: -1;
+        }
+        .mission-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+        .mission-content h2 span { color: var(--accent-gold); }
+        .mission-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .mission-content p.highlight {
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 15px;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .value-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 40px 30px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: var(--transition-medium);
+        }
+        .value-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-gold-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .value-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Story Types */
+        .storytypes-section {
+            padding: 100px 0;
+            background: var(--bg-primary);
+        }
+        .storytypes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .storyype-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-medium);
+        }
+        .storyype-card:hover {
+            border-color: var(--accent-gold);
+        }
+        .storyype-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .storyype-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .storyype-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            position: relative;
+        }
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(212, 168, 75, 0.05) 0%, transparent 70%);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Journey Section */
+        .journey-section {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border-color);
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+        .timeline-content {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            max-width: 350px;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 30px;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 30px;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            border: 3px solid var(--bg-secondary);
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+            left: auto;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+        }
+        .timeline-year {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+        .timeline-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--bg-primary);
+            text-align: center;
+        }
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .cta-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 35px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition-medium);
+        }
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: var(--bg-primary);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 168, 75, 0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .footer-brand h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+        .footer-social a:hover {
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+        }
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+        .footer-links a { color: var(--text-muted); }
+        .footer-links a:hover { color: var(--accent-gold); }
+
+        @media (max-width: 1024px) {
+            .mission-grid { grid-template-columns: 1fr; gap: 50px; }
+            .storytypes-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .values-grid { grid-template-columns: 1fr; }
+            .storytypes-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; gap: 30px; }
+            .timeline::before { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(even) {
+                padding-left: 50px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+            .timeline-item .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 12px;
+                right: auto;
+            }
+            .timeline-item .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+                max-width: 100%;
+            }
+            .footer-content, .footer-bottom { flex-direction: column; text-align: center; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="/images/logo.png" alt="Halls of Hope" class="logo-img">
+                Halls of Hope
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="watch.html">Watch</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://youtube.com/@HallsofHope" target="_blank" class="nav-cta">Subscribe <i class="fab fa-youtube"></i></a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>Where the <span>Overlooked</span> Become <span>Unforgettable</span></h1>
+            <p class="tagline">"Every person has a story worth telling"</p>
+            <p>In a world of viral pranks and shock content, we chose a different path. We tell the stories that matter — the quiet heroism, the hidden sacrifices, the moments of redemption that prove humanity's goodness.</p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-image">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591f1f1ca692?w=600&h=500&fit=crop" alt="Storytelling">
+                    <div class="mission-image-overlay"></div>
+                </div>
+                <div class="mission-content">
+                    <h2>Our <span>Mission</span></h2>
+                    <p>We believe that in every corner of the world, there are extraordinary stories happening to ordinary people. Stories of mothers who sacrifice everything for their children. Veterans who serve in silence. Strangers who become heroes in a single moment.</p>
+                    <p class="highlight">"We find the hidden heroes, the quiet sacrifices, and the moments of redemption that mainstream media ignores."</p>
+                    <p>Our mission is simple: to remind the world that goodness exists. That second chances are real. That the people society overlooks are often the most remarkable among us.</p>
+                    <p>Every video we create is designed to move you, inspire you, and change how you see the person next to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Values</span>
+                <h2 class="section-title">What We Stand For</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Authentic Emotion</h3>
+                    <p>We tell stories that make you feel. Not manufactured drama, but genuine human experiences that touch the heart and stay with you long after the video ends.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Seeing the Unseen</h3>
+                    <p>We spotlight the people and stories that society ignores — the janitor who's a hero, the grandmother who's a warrior, the stranger who changes a life.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>Dignity Always</h3>
+                    <p>We never exploit suffering or humiliate people for views. Every story is told with respect, compassion, and a commitment to uplifting rather than exploiting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Types -->
+    <section class="storytypes-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What We Cover</span>
+                <h2 class="section-title">Stories We Tell</h2>
+            </div>
+            <div class="storytypes-grid">
+                <div class="storyype-card">
+                    <div class="storyype-icon">👨‍👩‍👧</div>
+                    <h4>Family Drama</h4>
+                    <p>Secrets, sacrifices, and unconditional love</p>
+                </div>
+                <div class="storyype-card">
+                    <div class="storyype-icon">🎖️</div>
+                    <h4>Military & Veterans</h4>
+                    <p>Service, honor, and coming home</p>
+                </div>
+                <div class="storyype-card">
+                    <div class="storyype-icon">⚖️</div>
+                    <h4>Karma Stories</h4>
+                    <p>Justice served and lessons learned</p>
+                </div>
+                <div class="storyype-card">
+                    <div class="storyype-icon">🔄</div>
+                    <h4>Redemption</h4>
+                    <p>Second chances and transformation</p>
+                </div>
+                <div class="storyype-card">
+                    <div class="storyype-icon">🏠</div>
+                    <h4>Homeless Heroes</h4>
+                    <p>Angels in unexpected places</p>
+                </div>
+                <div class="storyype-card">
+                    <div class="storyype-icon">💝</div>
+                    <h4>Acts of Kindness</h4>
+                    <p>Small gestures, big impacts</p>
+                </div>
+                <div class="storyype-card">
+                    <div class="storyype-icon">🔍</div>
+                    <h4>Hidden Secrets</h4>
+                    <p>Revelations that change everything</p>
+                </div>
+                <div class="storyype-card">
+                    <div class="storyype-icon">✨</div>
+                    <h4>Against All Odds</h4>
+                    <p>Triumph over impossible circumstances</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">169</div>
+                    <div class="stat-label">Stories Created</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Story Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30-70</div>
+                    <div class="stat-label">Age Demographic</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Heartfelt Content</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="journey-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Journey</span>
+                <h2 class="section-title">How We Got Here</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-year">The Beginning</span>
+                        <h3>A Vision Takes Shape</h3>
+                        <p>Started with a simple belief: emotional, uplifting stories could compete with sensational content if told with cinematic quality.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-year">Building</span>
+                        <h3>169 Stories Written</h3>
+                        <p>Spent months crafting a complete library of emotional stories — each one designed to move audiences and remind them of humanity's goodness.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-year">Systems</span>
+                        <h3>Perfecting the Process</h3>
+                        <p>Developed comprehensive systems for video creation — from thumbnail design to video elements — ensuring consistent quality across every story.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-dot"></div>
+                        <span class="timeline-year">March 2026</span>
+                        <h3>The Launch</h3>
+                        <p>Halls of Hope officially launches with a mission to share stories that move millions and help other creators do the same.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Join Us on This Journey</h2>
+                <p>Subscribe to experience stories that will make you laugh, cry, and believe in the goodness of people again.</p>
+                <div class="cta-buttons">
+                    <a href="https://youtube.com/@HallsofHope" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-youtube"></i> Subscribe on YouTube
+                    </a>
+                    <a href="watch.html" class="btn btn-secondary">
+                        <i class="fas fa-play"></i> Watch Stories
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Halls of Hope</h3>
+                    <p>"Where the overlooked become unforgettable"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://youtube.com/@HallsofHope" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://instagram.com/HallsOfHope" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/HallsofHope" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://tiktok.com/@hoh_hallsofhope" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://x.com/HOH_HallsOfHope" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Halls of Hope. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

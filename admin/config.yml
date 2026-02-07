@@ -1,0 +1,282 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# This line enables editorial workflow (optional - allows drafts)
+# publish_mode: editorial_workflow
+
+# Where uploaded images will be stored
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Logo shown in admin panel
+logo_url: "/images/logo.png"
+
+# Site URL
+site_url: https://hallsofhope.com
+display_url: https://hallsofhope.com
+
+# ============================================
+# COLLECTIONS - What you can edit in the CMS
+# ============================================
+
+collections:
+
+  # ========== VIDEOS ==========
+  - name: "videos"
+    label: "📺 Videos"
+    label_singular: "Video"
+    description: "Add and manage your YouTube videos here"
+    folder: "data/videos"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - label: "Video Title"
+        name: "title"
+        widget: "string"
+        hint: "The title shown on your website"
+        
+      - label: "YouTube URL"
+        name: "youtube_url"
+        widget: "string"
+        hint: "Full URL like: https://youtube.com/watch?v=XXXXX"
+        
+      - label: "Thumbnail Image"
+        name: "thumbnail"
+        widget: "image"
+        hint: "Upload a thumbnail (recommended: 1280x720)"
+        required: false
+        
+      - label: "Thumbnail URL (alternative)"
+        name: "thumbnail_url"
+        widget: "string"
+        hint: "Or paste an image URL here instead of uploading"
+        required: false
+        
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "👨‍👩‍👧 Family Drama", value: "family" }
+          - { label: "🎖️ Military & Veterans", value: "military" }
+          - { label: "⚖️ Karma Stories", value: "karma" }
+          - { label: "🔄 Redemption", value: "redemption" }
+          - { label: "🏠 Homeless Heroes", value: "homeless" }
+          - { label: "💝 Acts of Kindness", value: "kindness" }
+          - { label: "💔 Betrayal", value: "betrayal" }
+          - { label: "🔍 Hidden Secrets", value: "secrets" }
+          
+      - label: "Short Description"
+        name: "description"
+        widget: "text"
+        hint: "1-2 sentences describing the video"
+        
+      - label: "Duration"
+        name: "duration"
+        widget: "string"
+        hint: "Video length (e.g., 15:42)"
+        
+      - label: "View Count"
+        name: "views"
+        widget: "string"
+        hint: "e.g., 1.2M views"
+        required: false
+        default: ""
+        
+      - label: "Show on Homepage?"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Turn ON to feature this video on the homepage"
+        
+      - label: "Display Order"
+        name: "order"
+        widget: "number"
+        default: 10
+        hint: "Lower numbers appear first (1 = first, 100 = last)"
+
+  # ========== PRODUCTS ==========
+  - name: "products"
+    label: "🛒 Products"
+    label_singular: "Product"
+    description: "Manage your shop products"
+    folder: "data/products"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - label: "Product Name"
+        name: "title"
+        widget: "string"
+        
+      - label: "Price (in dollars)"
+        name: "price"
+        widget: "number"
+        value_type: "int"
+        hint: "Enter 0 for free products"
+        
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "🎁 Free Resource", value: "free" }
+          - { label: "⭐ Starter Pack", value: "starter" }
+          - { label: "💼 Professional", value: "professional" }
+          - { label: "👑 Premium", value: "premium" }
+          - { label: "🔧 Custom Service", value: "custom" }
+          
+      - label: "Icon"
+        name: "icon"
+        widget: "select"
+        options:
+          - { label: "⚡ Lightning Bolt", value: "fas fa-bolt" }
+          - { label: "🖼️ Image", value: "fas fa-image" }
+          - { label: "✨ Magic Wand", value: "fas fa-wand-magic-sparkles" }
+          - { label: "🎬 Video", value: "fas fa-video" }
+          - { label: "📜 Scroll", value: "fas fa-scroll" }
+          - { label: "📚 Layer Group", value: "fas fa-layer-group" }
+          - { label: "👑 Crown", value: "fas fa-crown" }
+          - { label: "🎁 Gift", value: "fas fa-gift" }
+          - { label: "🚀 Rocket", value: "fas fa-rocket" }
+          - { label: "✏️ Pen", value: "fas fa-pen-fancy" }
+          - { label: "💬 Comments", value: "fas fa-comments" }
+          - { label: "✅ Check List", value: "fas fa-list-check" }
+          
+      - label: "Gumroad URL"
+        name: "gumroad_url"
+        widget: "string"
+        required: false
+        hint: "Link to your Gumroad product page"
+        
+      - label: "Features (one per line)"
+        name: "features"
+        widget: "list"
+        field: { label: "Feature", name: "feature", widget: "string" }
+        
+      - label: "Mark as 'Most Popular'?"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        
+      - label: "Display Order"
+        name: "order"
+        widget: "number"
+        default: 10
+        hint: "Lower numbers appear first"
+
+  # ========== SITE SETTINGS ==========
+  - name: "settings"
+    label: "⚙️ Site Settings"
+    description: "Edit your website settings"
+    files:
+    
+      # General Settings
+      - name: "general"
+        label: "🌐 General Settings"
+        file: "data/settings/general.json"
+        fields:
+          - label: "Site Title"
+            name: "site_title"
+            widget: "string"
+            default: "Halls of Hope"
+            
+          - label: "Tagline"
+            name: "tagline"
+            widget: "string"
+            default: "Where the overlooked become unforgettable"
+            
+          - label: "Homepage Hero Title"
+            name: "hero_title"
+            widget: "string"
+            default: "Stories That Move Millions"
+            
+          - label: "Homepage Hero Subtitle"
+            name: "hero_subtitle"
+            widget: "text"
+            
+      # Social Media Links
+      - name: "social"
+        label: "📱 Social Media Links"
+        file: "data/settings/social.json"
+        fields:
+          - label: "YouTube Channel URL"
+            name: "youtube"
+            widget: "string"
+            
+          - label: "Instagram URL"
+            name: "instagram"
+            widget: "string"
+            
+          - label: "Facebook URL"
+            name: "facebook"
+            widget: "string"
+            
+          - label: "TikTok URL"
+            name: "tiktok"
+            widget: "string"
+            
+          - label: "X (Twitter) URL"
+            name: "twitter"
+            widget: "string"
+            
+      # Contact Info
+      - name: "contact"
+        label: "📧 Contact Information"
+        file: "data/settings/contact.json"
+        fields:
+          - label: "General Email"
+            name: "email_general"
+            widget: "string"
+            
+          - label: "Business Email"
+            name: "email_business"
+            widget: "string"
+            
+          - label: "Press/Media Email"
+            name: "email_press"
+            widget: "string"
+            
+          - label: "Response Time"
+            name: "response_time"
+            widget: "string"
+            default: "24-48 hours"
+            
+      # Homepage Stats
+      - name: "stats"
+        label: "📊 Homepage Statistics"
+        file: "data/settings/stats.json"
+        fields:
+          - label: "Stat 1 - Number"
+            name: "stat1_number"
+            widget: "string"
+            default: "169"
+            
+          - label: "Stat 1 - Label"
+            name: "stat1_label"
+            widget: "string"
+            default: "Stories Ready"
+            
+          - label: "Stat 2 - Number"
+            name: "stat2_number"
+            widget: "string"
+            default: "30-70"
+            
+          - label: "Stat 2 - Label"
+            name: "stat2_label"
+            widget: "string"
+            default: "Age Demographic"
+            
+          - label: "Stat 3 - Number"
+            name: "stat3_number"
+            widget: "string"
+            default: "100%"
+            
+          - label: "Stat 3 - Label"
+            name: "stat3_label"
+            widget: "string"
+            default: "Heartfelt Content"
