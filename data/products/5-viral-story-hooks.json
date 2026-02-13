@@ -1,11 +1,15 @@
 {
-  "title": "5 Viral Story Hooks",
   "price": 0,
-  "description": "Proven hooks that have generated millions of views. Use them in your next video.",
-  "category": "free",
-  "icon": "fas fa-bolt",
-  "gumroad_url": "",
-  "features": ["5 proven hooks", "Instant download", "PDF format"],
   "featured": false,
-  "order": 1
+  "order": 1,
+  "gumroad_url": "https://hallsofhope.gumroad.com/l/free-story-hooks",
+  "title": "5 Viral Story Hooks",
+  "icon": "fas fa-bolt",
+  "description": "Proven hooks that have generated millions of views. Use them in your next video.",
+  "features": [
+    "5 proven hooks",
+    "Instant download",
+    "PDF format"
+  ],
+  "category": "free"
 }
