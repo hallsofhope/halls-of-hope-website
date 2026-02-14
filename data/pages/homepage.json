@@ -1,0 +1,47 @@
+{
+  "announcement_text": "Launching March 3, 2026",
+  "show_announcement": true,
+  "hero_heading": "Nobody Sees Them. Until We Tell Their Story.",
+  "hero_tagline": "Where the overlooked become unforgettable",
+  "hero_description": "The tired janitor. The struggling grandmother. The homeless veteran. Society overlooks them. We craft powerful emotional narratives that reveal their hidden courage, sacrifice, and worth — in ways that will move you to tears.",
+  "homepage_products": [
+    {
+      "title": "Free Story Hooks",
+      "description": "5 proven story hooks that captivate audiences instantly. Perfect for getting started.",
+      "price": "FREE",
+      "button_text": "Download Now",
+      "gumroad_url": "https://hallsofhope.gumroad.com/l/free-story-hooks",
+      "icon": "fas fa-gift",
+      "featured": false
+    },
+    {
+      "title": "Thumbnail Brief Prompt",
+      "description": "The exact prompt system we use to create stunning thumbnail briefs for every video.",
+      "price": "$47",
+      "button_text": "Get Access",
+      "gumroad_url": "https://hallsofhope.gumroad.com/l/thumbnail-prompt-pack",
+      "icon": "fas fa-wand-magic-sparkles",
+      "featured": true
+    },
+    {
+      "title": "Full Script Library",
+      "description": "Access to all 167+ professionally written scripts with commercial licensing rights.",
+      "price": "$997",
+      "button_text": "Learn More",
+      "gumroad_url": "https://hallsofhope.gumroad.com/l/full-script-library",
+      "icon": "fas fa-crown",
+      "featured": false
+    }
+  ],
+  "testimonials": [
+    {"text": "These stories remind me why I love humanity. I watch every single video and share them with my entire family.", "name": "Mary Johnson", "initials": "MJ", "source": "YouTube Comment"},
+    {"text": "Finally, a channel that tells REAL stories without being exploitative. This is what YouTube should be about.", "name": "Robert King", "initials": "RK", "source": "YouTube Comment"},
+    {"text": "My husband is a Marine veteran. These stories honor our military families with the respect they deserve. Subscribed for life.", "name": "Diane Walker", "initials": "DW", "source": "YouTube Comment"},
+    {"text": "I literally sobbed watching the Thanksgiving story. I called my dad right after. This channel makes you want to be a better person.", "name": "Teresa Lopez", "initials": "TL", "source": "YouTube Comment"},
+    {"text": "The production quality is insane for a new channel. The narration gives me movie trailer chills every single time. Keep going!", "name": "James Brooks", "initials": "JB", "source": "YouTube Comment"},
+    {"text": "I'm a teacher and I use these stories in my classroom. The themes of kindness, sacrifice, and doing the right thing are exactly what kids need to hear.", "name": "Sarah Kim", "initials": "SK", "source": "YouTube Comment"},
+    {"text": "In a world full of negativity, this channel is a breath of fresh air. Every video restores my faith in people. Thank you for doing this.", "name": "Patricia Adams", "initials": "PA", "source": "YouTube Comment"},
+    {"text": "My whole family watches together on Saturday nights. Even my teenage son who never watches anything with us asks 'is there a new Halls of Hope?'", "name": "Michael Rivera", "initials": "MR", "source": "YouTube Comment"},
+    {"text": "As a veteran myself, I can't tell you how much it means to see our stories told with dignity. Not for clicks, not for shock. For respect. God bless this channel.", "name": "William Harris", "initials": "WH", "source": "YouTube Comment"}
+  ]
+}

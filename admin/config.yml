@@ -1,0 +1,672 @@
+backend:
+  name: github
+  repo: hallsofhope/halls-of-hope-website
+  branch: main
+  base_url: https://www.hallsofhope.com
+  auth_endpoint: /api/auth
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+logo_url: "/images/logo.png"
+site_url: https://hallsofhope.com
+display_url: https://hallsofhope.com
+
+collections:
+
+  # ==========================================
+  # 📺 VIDEOS - Full control of all videos
+  # ==========================================
+  - name: "videos"
+    label: "📺 Videos"
+    label_singular: "Video"
+    description: "Manage ALL videos shown on your website"
+    folder: "data/videos"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    format: "json"
+    sortable_fields: ['order', 'title', 'category']
+    fields:
+      - label: "Video Title"
+        name: "title"
+        widget: "string"
+        hint: "The title shown on your website"
+        
+      - label: "YouTube URL"
+        name: "youtube_url"
+        widget: "string"
+        hint: "Full URL like: https://youtube.com/watch?v=XXXXX"
+        
+      - label: "Thumbnail URL"
+        name: "thumbnail_url"
+        widget: "string"
+        hint: "Paste image URL (from Unsplash, YouTube, etc.)"
+        
+      - label: "Or Upload Thumbnail"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+        hint: "Or upload an image file"
+        
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "👨‍👩‍👧 Family Drama", value: "family" }
+          - { label: "🎖️ Military & Veterans", value: "military" }
+          - { label: "⚖️ Karma Stories", value: "karma" }
+          - { label: "🔄 Redemption", value: "redemption" }
+          - { label: "🏠 Homeless Heroes", value: "homeless" }
+          - { label: "💝 Acts of Kindness", value: "kindness" }
+          - { label: "💔 Betrayal", value: "betrayal" }
+          - { label: "🔍 Hidden Secrets", value: "secrets" }
+          
+      - label: "Short Description"
+        name: "description"
+        widget: "text"
+        hint: "1-2 sentences about the video"
+        
+      - label: "Duration"
+        name: "duration"
+        widget: "string"
+        hint: "e.g., 15:42"
+        
+      - label: "View Count"
+        name: "views"
+        widget: "string"
+        required: false
+        hint: "e.g., 1.2M views"
+        
+      - label: "⭐ Show on Homepage?"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Turn ON to feature on homepage"
+        
+      - label: "Display Order"
+        name: "order"
+        widget: "number"
+        default: 10
+        hint: "Lower = appears first (1, 2, 3...)"
+
+  # ==========================================
+  # 🛒 PRODUCTS - Full control of shop items
+  # ==========================================
+  - name: "products"
+    label: "🛒 Products"
+    label_singular: "Product"
+    description: "Manage all products in your shop"
+    folder: "data/products"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - label: "Product Name"
+        name: "title"
+        widget: "string"
+        
+      - label: "Price (in dollars)"
+        name: "price"
+        widget: "number"
+        value_type: "int"
+        hint: "Enter 0 for free products"
+        
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "🎁 Free Resource", value: "free" }
+          - { label: "⭐ Starter Pack", value: "starter" }
+          - { label: "💼 Professional", value: "professional" }
+          - { label: "👑 Premium", value: "premium" }
+          - { label: "🔧 Custom Service", value: "custom" }
+          
+      - label: "Icon"
+        name: "icon"
+        widget: "select"
+        options:
+          - { label: "⚡ Lightning Bolt", value: "fas fa-bolt" }
+          - { label: "🖼️ Image", value: "fas fa-image" }
+          - { label: "✨ Magic Wand", value: "fas fa-wand-magic-sparkles" }
+          - { label: "🎬 Video", value: "fas fa-video" }
+          - { label: "📜 Scroll", value: "fas fa-scroll" }
+          - { label: "📚 Layer Group", value: "fas fa-layer-group" }
+          - { label: "👑 Crown", value: "fas fa-crown" }
+          - { label: "✏️ Pen", value: "fas fa-pen-fancy" }
+          - { label: "💬 Comments", value: "fas fa-comments" }
+          - { label: "🚀 Rocket", value: "fas fa-rocket" }
+          - { label: "✅ Checklist", value: "fas fa-list-check" }
+          
+      - label: "Gumroad URL"
+        name: "gumroad_url"
+        widget: "string"
+        required: false
+        hint: "Link to purchase page"
+        
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        hint: "Click 'Add' for each feature bullet point"
+        field: { label: "Feature", name: "feature", widget: "string" }
+        
+      - label: "⭐ Mark as 'Most Popular'?"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        
+      - label: "Display Order"
+        name: "order"
+        widget: "number"
+        default: 10
+
+  # ==========================================
+  # ⚙️ SITE SETTINGS - Global controls
+  # ==========================================
+  - name: "settings"
+    label: "⚙️ Site Settings"
+    description: "Global website settings"
+    files:
+    
+      # ---------- General Settings ----------
+      - name: "general"
+        label: "🌐 General Settings"
+        file: "data/settings/general.json"
+        fields:
+          - label: "Site Title"
+            name: "site_title"
+            widget: "string"
+            default: "Halls of Hope"
+            
+          - label: "Tagline"
+            name: "tagline"
+            widget: "string"
+            default: "Where the overlooked become unforgettable"
+
+          - label: "📢 Announcement Badge Text"
+            name: "announcement_text"
+            widget: "string"
+            default: "Launching March 3, 2026"
+            hint: "The green-dot announcement banner at the top of the homepage. Change this anytime to share news with visitors."
+
+          - label: "Show Announcement Badge?"
+            name: "show_announcement"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide the announcement badge"
+            
+          - label: "Homepage Hero Title"
+            name: "hero_title"
+            widget: "string"
+            
+          - label: "Homepage Hero Subtitle"
+            name: "hero_subtitle"
+            widget: "text"
+            
+      # ---------- Footer Settings ----------
+      - name: "footer"
+        label: "🦶 Footer Settings"
+        file: "data/settings/footer.json"
+        fields:
+          - label: "Footer Tagline"
+            name: "tagline"
+            widget: "string"
+            default: "Where the overlooked become unforgettable"
+            hint: "The quote shown in the footer"
+            
+          - label: "Copyright Text"
+            name: "copyright"
+            widget: "string"
+            default: "2026 Halls of Hope. All rights reserved."
+            
+          - label: "Show Privacy Policy Link?"
+            name: "show_privacy"
+            widget: "boolean"
+            default: true
+            
+          - label: "Privacy Policy URL"
+            name: "privacy_url"
+            widget: "string"
+            default: "#"
+            required: false
+            
+          - label: "Show Terms of Service Link?"
+            name: "show_terms"
+            widget: "boolean"
+            default: true
+            
+          - label: "Terms of Service URL"
+            name: "terms_url"
+            widget: "string"
+            default: "#"
+            required: false
+            
+          - label: "Show Refund Policy Link?"
+            name: "show_refund"
+            widget: "boolean"
+            default: false
+            
+          - label: "Refund Policy URL"
+            name: "refund_url"
+            widget: "string"
+            default: "#"
+            required: false
+
+          - label: "Show Earnings Disclaimer Link?"
+            name: "show_disclaimer"
+            widget: "boolean"
+            default: true
+
+          - label: "Earnings Disclaimer URL"
+            name: "disclaimer_url"
+            widget: "string"
+            default: "disclaimer.html"
+            required: false
+            
+      # ---------- Social Media Links ----------
+      - name: "social"
+        label: "📱 Social Media Links"
+        file: "data/settings/social.json"
+        fields:
+          - label: "YouTube Channel URL"
+            name: "youtube"
+            widget: "string"
+            
+          - label: "Instagram URL"
+            name: "instagram"
+            widget: "string"
+            
+          - label: "Facebook URL"
+            name: "facebook"
+            widget: "string"
+            
+          - label: "TikTok URL"
+            name: "tiktok"
+            widget: "string"
+            
+          - label: "X (Twitter) URL"
+            name: "twitter"
+            widget: "string"
+            
+      # ---------- Contact Information ----------
+      - name: "contact"
+        label: "📧 Contact Information"
+        file: "data/settings/contact.json"
+        fields:
+          - label: "General Email"
+            name: "email_general"
+            widget: "string"
+            
+          - label: "Business Email"
+            name: "email_business"
+            widget: "string"
+            
+          - label: "Press/Media Email"
+            name: "email_press"
+            widget: "string"
+            
+          - label: "Response Time"
+            name: "response_time"
+            widget: "string"
+            default: "24-48 hours"
+            
+      # ---------- Homepage Stats ----------
+      - name: "stats"
+        label: "📊 Homepage Statistics"
+        file: "data/settings/stats.json"
+        fields:
+          - label: "Stat 1 - Number"
+            name: "stat1_number"
+            widget: "string"
+            default: "169"
+            
+          - label: "Stat 1 - Label"
+            name: "stat1_label"
+            widget: "string"
+            default: "Stories Ready"
+            
+          - label: "Stat 2 - Number"
+            name: "stat2_number"
+            widget: "string"
+            default: "30-70"
+            
+          - label: "Stat 2 - Label"
+            name: "stat2_label"
+            widget: "string"
+            default: "Age Demographic"
+            
+          - label: "Stat 3 - Number"
+            name: "stat3_number"
+            widget: "string"
+            default: "100%"
+            
+          - label: "Stat 3 - Label"
+            name: "stat3_label"
+            widget: "string"
+            default: "Heartfelt Content"
+
+  # ==========================================
+  # 📄 PAGES - Edit page content
+  # ==========================================
+  - name: "pages"
+    label: "📄 Edit Pages"
+    description: "Edit content on each page"
+    files:
+    
+      # ---------- Homepage ----------
+      - name: "homepage"
+        label: "🏠 Homepage"
+        file: "data/pages/homepage.json"
+        fields:
+          - label: "📢 Announcement Badge Text"
+            name: "announcement_text"
+            widget: "string"
+            default: "Launching March 3, 2026"
+            hint: "The green-dot banner at the top. Update this for news, milestones, or promotions."
+
+          - label: "Show Announcement Badge?"
+            name: "show_announcement"
+            widget: "boolean"
+            default: true
+
+          - label: "Hero Heading"
+            name: "hero_heading"
+            widget: "string"
+            default: "Nobody Sees Them. Until We Tell Their Story."
+
+          - label: "Hero Tagline"
+            name: "hero_tagline"
+            widget: "string"
+            default: "Where the overlooked become unforgettable"
+
+          - label: "Hero Description"
+            name: "hero_description"
+            widget: "text"
+            default: "The tired janitor. The struggling grandmother. The homeless veteran. Society overlooks them. We craft powerful emotional narratives that reveal their hidden courage, sacrifice, and worth — in ways that will move you to tears."
+
+          - label: "🛒 Homepage Products"
+            name: "homepage_products"
+            widget: "list"
+            hint: "The 3 product cards shown on the homepage. Edit names, prices, descriptions, and Gumroad links."
+            max: 3
+            fields:
+              - { label: "Product Name", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Price Display", name: "price", widget: "string", hint: "e.g., FREE, $47, $997" }
+              - { label: "Button Text", name: "button_text", widget: "string", default: "Get Access" }
+              - { label: "Gumroad URL", name: "gumroad_url", widget: "string", hint: "Full Gumroad link like: https://hallsofhope.gumroad.com/l/your-product" }
+              - label: "Icon"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "🎁 Gift", value: "fas fa-gift" }
+                  - { label: "✨ Magic Wand", value: "fas fa-wand-magic-sparkles" }
+                  - { label: "👑 Crown", value: "fas fa-crown" }
+                  - { label: "🚀 Rocket", value: "fas fa-rocket" }
+                  - { label: "📜 Scroll", value: "fas fa-scroll" }
+              - { label: "Featured (Most Popular badge)?", name: "featured", widget: "boolean", default: false }
+
+          - label: "💬 Testimonials"
+            name: "testimonials"
+            widget: "list"
+            hint: "Community reviews shown in the slider on the homepage"
+            fields:
+              - { label: "Quote", name: "text", widget: "text" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Initials", name: "initials", widget: "string", hint: "e.g., MJ for Mary Johnson" }
+              - { label: "Source", name: "source", widget: "string", default: "YouTube Comment" }
+
+      # ---------- About Page ----------
+      - name: "about"
+        label: "📖 About Page"
+        file: "data/pages/about.json"
+        fields:
+          - label: "Hero Title"
+            name: "hero_title"
+            widget: "string"
+            default: "Where the Overlooked Become Unforgettable"
+            
+          - label: "Hero Tagline"
+            name: "hero_tagline"
+            widget: "string"
+            default: "Every person has a story worth telling"
+            
+          - label: "Hero Description"
+            name: "hero_description"
+            widget: "text"
+            
+          - label: "Mission Title"
+            name: "mission_title"
+            widget: "string"
+            default: "Our Mission"
+            
+          - label: "Mission Paragraph 1"
+            name: "mission_p1"
+            widget: "text"
+            
+          - label: "Mission Quote"
+            name: "mission_quote"
+            widget: "string"
+            hint: "The highlighted quote"
+            
+          - label: "Mission Paragraph 2"
+            name: "mission_p2"
+            widget: "text"
+            
+          - label: "Values Section"
+            name: "values"
+            widget: "list"
+            hint: "Add or edit your core values"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Icon"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "❤️ Heart", value: "fas fa-heart" }
+                  - { label: "👁️ Eye", value: "fas fa-eye" }
+                  - { label: "🤝 Helping Hand", value: "fas fa-hand-holding-heart" }
+                  - { label: "⭐ Star", value: "fas fa-star" }
+                  - { label: "💡 Lightbulb", value: "fas fa-lightbulb" }
+                  
+          - label: "Timeline Events"
+            name: "timeline"
+            widget: "list"
+            hint: "Your journey timeline"
+            fields:
+              - { label: "Year/Period", name: "year", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              
+      # ---------- Contact Page ----------
+      - name: "contact"
+        label: "📞 Contact Page"
+        file: "data/pages/contact.json"
+        fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Get in Touch"
+            
+          - label: "Page Subtitle"
+            name: "page_subtitle"
+            widget: "text"
+            
+          - label: "Section Title"
+            name: "section_title"
+            widget: "string"
+            default: "Let's Connect"
+            
+          - label: "Section Description"
+            name: "section_description"
+            widget: "text"
+            
+          - label: "FAQ Items"
+            name: "faq"
+            widget: "list"
+            hint: "Quick FAQ shown on contact page"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Answer", name: "answer", widget: "text" }
+              
+      # ---------- Shop Page ----------
+      - name: "shop"
+        label: "🛍️ Shop Page"
+        file: "data/pages/shop.json"
+        fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Creator Tools"
+            
+          - label: "Page Subtitle"
+            name: "page_subtitle"
+            widget: "text"
+            
+          - label: "Free Section Title"
+            name: "free_section_title"
+            widget: "string"
+            default: "Free Resources"
+            
+          - label: "Free Section Subtitle"
+            name: "free_section_subtitle"
+            widget: "string"
+            
+          - label: "Premium Section Title"
+            name: "premium_section_title"
+            widget: "string"
+            default: "Full Script Library"
+            
+          - label: "Premium Section Description"
+            name: "premium_description"
+            widget: "text"
+            
+          - label: "Money Back Guarantee Text"
+            name: "guarantee_text"
+            widget: "string"
+            default: "30-day money-back guarantee"
+            
+          - label: "Custom Services Section Title"
+            name: "custom_section_title"
+            widget: "string"
+            default: "Custom Services"
+            
+          - label: "FAQ Items"
+            name: "faq"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Answer", name: "answer", widget: "text" }
+
+      # ---------- Watch Page ----------
+      - name: "watch"
+        label: "🎬 Watch Page"
+        file: "data/pages/watch.json"
+        fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Watch Our Stories"
+            
+          - label: "Page Subtitle"
+            name: "page_subtitle"
+            widget: "text"
+            
+          - label: "Subscribe CTA Title"
+            name: "cta_title"
+            widget: "string"
+            default: "Never Miss a Story"
+            
+          - label: "Subscribe CTA Text"
+            name: "cta_text"
+            widget: "text"
+
+      # ---------- Community Page ----------
+      - name: "community"
+        label: "💬 Community Page"
+        file: "data/pages/community.json"
+        fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Community Love"
+            
+          - label: "Page Subtitle"
+            name: "page_subtitle"
+            widget: "text"
+            default: "Real reactions from real viewers"
+
+          - label: "Community Testimonials"
+            name: "testimonials"
+            widget: "list"
+            hint: "Add/edit community testimonials displayed on this page"
+            fields:
+              - { label: "Quote", name: "text", widget: "text" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Source", name: "source", widget: "string", default: "YouTube Comment" }
+              - { label: "Rating (1-5)", name: "rating", widget: "number", default: 5, value_type: "int", min: 1, max: 5 }
+
+      # ---------- Privacy Policy ----------
+      - name: "privacy"
+        label: "🔒 Privacy Policy"
+        file: "data/pages/privacy.json"
+        fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Privacy Policy"
+            
+          - label: "Page Content"
+            name: "content"
+            widget: "markdown"
+            hint: "Full privacy policy content. Use ## for section headings."
+            
+          - label: "Last Updated Date"
+            name: "last_updated"
+            widget: "string"
+            default: "February 13, 2026"
+
+      # ---------- Terms of Service ----------
+      - name: "terms"
+        label: "📋 Terms of Service"
+        file: "data/pages/terms.json"
+        fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Terms of Service"
+            
+          - label: "Page Content"
+            name: "content"
+            widget: "markdown"
+            hint: "Full terms of service content. Use ## for section headings."
+            
+          - label: "Last Updated Date"
+            name: "last_updated"
+            widget: "string"
+            default: "February 13, 2026"
+
+      # ---------- Earnings Disclaimer ----------
+      - name: "disclaimer"
+        label: "⚠️ Earnings Disclaimer"
+        file: "data/pages/disclaimer.json"
+        fields:
+          - label: "Page Title"
+            name: "page_title"
+            widget: "string"
+            default: "Earnings Disclaimer"
+            
+          - label: "Page Content"
+            name: "content"
+            widget: "markdown"
+            hint: "Full earnings disclaimer content. Use ## for section headings."
+            
+          - label: "Last Updated Date"
+            name: "last_updated"
+            widget: "string"
+            default: "February 13, 2026"
